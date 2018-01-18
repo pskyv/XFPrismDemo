@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="XFPrismDemo.Views.NavigationMenuPage">
+
+    <MasterDetailPage.Master>
+        <NavigationPage Title="Navigation menu" Icon="hamburger.png" HasBackButton="False">
+            <x:Arguments>
+                <ContentPage NavigationPage.HasNavigationBar="False">
+                    <StackLayout>
+                        <StackLayout BackgroundColor="SkyBlue" Padding="10,20">
+                            <!--<Image Source="logoSingle.png" HorizontalOptions="Start" />-->
+                            <Label Text="Xamarin Forms Demo" TextColor="White" FontSize="Large" HorizontalOptions="Start" />
+                        </StackLayout>
+
+                        <ListView ItemsSource="{Binding NavItems}" 
+                                  SelectedItem="{Binding SelectedNaviItem, Mode=TwoWay}" 
+                                  SeparatorVisibility="None" 
+                                  RowHeight="50">
+                            <ListView.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateCommand}"/>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="10,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding IconSource}" VerticalOptions="Center" />
+                                            <Label Grid.Column="1" Text="{Binding Caption}" VerticalOptions="Center" Margin="10,0,0,0" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <StackLayout VerticalOptions="EndAndExpand">
+                            <BoxView />
+                            <StackLayout Orientation="Horizontal" Padding="10,2">
+                                <!--<Image Source="copyright.png" />-->
+                                <Label Text="Copyright skyDev 2018" VerticalOptions="Center" FontSize="Micro" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>
