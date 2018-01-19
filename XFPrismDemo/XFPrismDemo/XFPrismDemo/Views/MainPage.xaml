@@ -2,6 +2,7 @@
 <bb:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:bb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+                  xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
                   x:Class="XFPrismDemo.Views.MainPage"
                   BarTheme="Light"
                   BarTextColor="Black">
@@ -11,7 +12,12 @@
     </BottomBarPage.ToolbarItems>-->
 
     <ContentPage Title="Favorites" Icon="ic_favorites.png" />
-    <ContentPage Title="Contacts" Icon="ic_contacts.png" />
-    <ContentPage Title="Search" Icon="ic_search.png" />
+    <ContentPage Title="Contacts" Icon="ic_contacts.png"/>
+    <ContentPage Title="Search" Icon="ic_search.png">
+        <StackLayout Padding="20">
+            <ctrls:ImageEntry Placeholder="Search contact..."
+                              Image="ic_search" />
+        </StackLayout>    
+    </ContentPage>
 
 </bb:BottomBarPage>

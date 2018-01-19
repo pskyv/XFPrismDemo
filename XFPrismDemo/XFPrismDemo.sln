@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFPrismDemo", "XFPrismDemo\XFPrismDemo\XFPrismDemo.csproj", "{3572EA8D-2DF6-4BC7-9C01-F4550E912DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XFPrismDemo", "XFPrismDemo\XFPrismDemo\XFPrismDemo.csproj", "{3572EA8D-2DF6-4BC7-9C01-F4550E912DD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFPrismDemo.Android", "XFPrismDemo\XFPrismDemo.Android\XFPrismDemo.Android.csproj", "{00635677-6095-4DB9-91B9-634E92149459}"
 EndProject
@@ -96,6 +96,7 @@ Global
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.Debug|iPhone.Build.0 = Debug|iPhone
 		{050EFCEE-58F9-449F-94A3-ED28F7A3B4D1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
