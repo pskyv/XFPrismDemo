@@ -6,8 +6,11 @@
 
     <Application.Resources>
         <ResourceDictionary >
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="#CFD8DC" />
+            </Style> 
             <Style TargetType="BoxView">
-                <Setter Property="Color" Value="LightGray" />
+                <Setter Property="Color" Value="#BDBDBD" />
                 <Setter Property="HeightRequest" Value="0.5" />
             </Style>
             <Style TargetType="ActivityIndicator">

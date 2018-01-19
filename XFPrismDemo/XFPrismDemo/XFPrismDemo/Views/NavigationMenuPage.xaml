@@ -11,7 +11,7 @@
             <x:Arguments>
                 <ContentPage NavigationPage.HasNavigationBar="False">
                     <StackLayout>
-                        <StackLayout BackgroundColor="SkyBlue" Padding="10,20">
+                        <StackLayout BackgroundColor="#607D8B" Padding="10,20">
                             <!--<Image Source="logoSingle.png" HorizontalOptions="Start" />-->
                             <Label Text="Xamarin Forms Demo" TextColor="White" FontSize="Large" HorizontalOptions="Start" />
                         </StackLayout>
