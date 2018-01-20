@@ -1,10 +1,10 @@
 ﻿using Prism;
 using Prism.Ioc;
-using XFPrismDemo.ViewModels;
 using XFPrismDemo.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using XFPrismDemo.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XFPrismDemo
@@ -32,6 +32,9 @@ namespace XFPrismDemo
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<NavigationMenuPage>();
+            
+            containerRegistry.RegisterSingleton(typeof(IDatabaseService), typeof(DatabaseService));
+            containerRegistry.RegisterForNavigation<TodoListPage>();
         }
     }
 }

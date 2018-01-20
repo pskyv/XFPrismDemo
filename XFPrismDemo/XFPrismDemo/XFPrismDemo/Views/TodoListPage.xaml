@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="XFPrismDemo.Views.TodoListPage"
+             Title="Todo List"
+             Icon="ic_todoList">
+
+    <StackLayout Padding="20">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Entry Placeholder="Add new item..." Text="{Binding NewItemDescription}" />
+            <Image Grid.Column="1" Source="ic_done.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateItemCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+
+        <ListView ItemsSource="{Binding TodoItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Description}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout>
+  
+</ContentPage>
