@@ -16,6 +16,9 @@
             <Style TargetType="ActivityIndicator">
                 <Setter Property="Color" Value="#6ff9ff" />
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#212121" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

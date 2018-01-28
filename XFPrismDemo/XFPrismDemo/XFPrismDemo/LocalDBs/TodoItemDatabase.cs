@@ -20,24 +20,29 @@ namespace XFPrismDemo.LocalDBs
             return await _connection.Table<TodoItem>().ToListAsync();
         }
 
-        public Task<List<TodoItem>> GetItemsNotDoneAsync()
+        public async Task<List<TodoItem>> GetItemsNotDoneAsync()
         {
-            return _connection.Table<TodoItem>().Where(x => x.IsDone == false).ToListAsync();
+            return await _connection.Table<TodoItem>().Where(x => x.IsDone == false).ToListAsync();
         }
 
-        public Task<TodoItem> GetItemAsync(int id)
+        public async Task<TodoItem> GetItemAsync(int id)
         {
-            return _connection.Table<TodoItem>().Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _connection.Table<TodoItem>().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(TodoItem item)
+        public async Task<int> SaveItemAsync(TodoItem item)
         {
-            return _connection.InsertAsync(item);
+            return await _connection.InsertAsync(item);
         }
 
-        public Task<int> DeleteItemAsync(TodoItem item)
+        public async Task<int> UpdateItemAsync(TodoItem item)
         {
-            return _connection.DeleteAsync(item);
+            return await _connection.UpdateAsync(item);
+        }
+
+        public async Task<int> DeleteItemAsync(TodoItem item)
+        {
+            return await _connection.DeleteAsync(item);
         }
     }
 }

@@ -5,8 +5,8 @@ namespace XFPrismDemo.Models
 {
     public class TodoItem
     {
-        [PrimaryKey]
-        public int Id { get; }
+        [PrimaryKey, AutoIncrement]                
+        public int Id { get; set; }
 
         public string Description { get; set; }
 

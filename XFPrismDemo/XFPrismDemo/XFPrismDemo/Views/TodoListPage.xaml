@@ -2,10 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XFPrismDemo.Views.TodoListPage"
+             x:Name="TodoListPage"
              Title="Todo List"
-             Icon="ic_todoList">
+             Icon="ic_todoList"
+             BackgroundColor="#CFD8DC">
 
     <StackLayout Padding="20">
 
@@ -16,21 +19,71 @@
             </Grid.ColumnDefinitions>
 
             <Entry Placeholder="Add new item..." Text="{Binding NewItemDescription}" />
-            <Image Grid.Column="1" Source="ic_done.png">
+            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" WidthRequest="50" />
+            <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateItemCommand}" />
                 </Image.GestureRecognizers>
-            </Image>
+            </Image>-->
         </Grid>
 
-        <ListView ItemsSource="{Binding TodoItems}">
+        <ListView ItemsSource="{Binding TodoItems}" 
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Description}" />
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Remove" 
+                                      Icon="ic_delete.png" 
+                                      Command="{Binding Path=BindingContext.RemoveFromListCommand, Source={x:Reference Name=TodoListPage}}" 
+                                      CommandParameter="{Binding .}" />
+                        </ViewCell.ContextActions>
+
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Description}" VerticalOptions="Center" />
+                            <BoxView VerticalOptions="Center" IsVisible="False" Color="Black" HeightRequest="0.5">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView" Binding="{Binding Source={x:Reference switch}, Path=IsToggled}" Value="True">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>    
+                            </BoxView>
+                            <Switch x:Name="switch" 
+                                    Grid.Column="1" 
+                                    IsToggled="{Binding IsDone, Mode=TwoWay}"                                     
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center">
+                                <Switch.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" 
+                                                                      Command="{Binding Path=BindingContext.UpdateItemCommand, Source={x:Reference Name=TodoListPage}}" 
+                                                                      CommandParameter="{Binding .}" />
+                                </Switch.Behaviors>
+                            </Switch>
+                        </Grid>
+
+                        <!--<StackLayout Padding="10,5" Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="{Binding Description}" />
+                            <Switch IsToggled="{Binding IsDone, Mode=TwoWay}"                                     
+                                    HorizontalOptions="EndAndExpand">
+                                <Switch.Behaviors>
+                                    <behaviors:EventToCommandBehavior EventName="Toggled" 
+                                                                      Command="{Binding Path=BindingContext.UpdateItemCommand, Source={x:Reference Name=TodoListPage}}" 
+                                                                      CommandParameter="{Binding .}" />
+                                </Switch.Behaviors>    
+                            </Switch>
+                        </StackLayout>-->
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
     </StackLayout>
-  
+
 </ContentPage>
