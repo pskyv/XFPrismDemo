@@ -2,23 +2,13 @@
 <bb:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:bb="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
-                  xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
                   xmlns:views="clr-namespace:XFPrismDemo.Views"
                   x:Class="XFPrismDemo.Views.MainPage"
                   BarTheme="Light"
                   BarTextColor="Black">
 
-    <!--<BottomBarPage.ToolbarItems>
-        <ToolbarItem Name="Search" Order="Primary" Icon="ic_search.png" />
-    </BottomBarPage.ToolbarItems>-->
-
     <views:TodoListPage />
     <ContentPage Title="Contacts" Icon="ic_contacts.png"/>
-    <ContentPage Title="Search" Icon="ic_search.png">
-        <StackLayout Padding="20">
-            <ctrls:ImageEntry Placeholder="Search contact..."
-                              Image="ic_search" />
-        </StackLayout>    
-    </ContentPage>
+    <ContentPage Title="Search" Icon="ic_search.png"/>
 
 </bb:BottomBarPage>

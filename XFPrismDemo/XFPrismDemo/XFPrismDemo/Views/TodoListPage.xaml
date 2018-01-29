@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XFPrismDemo.Views.TodoListPage"
              x:Name="TodoListPage"
@@ -18,7 +19,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Entry Placeholder="Add new item..." Text="{Binding NewItemDescription}" />
+            <ctrls:ImageEntry Image="ic_lightbulb" Placeholder="Add new item..." Text="{Binding NewItemDescription}" />
             <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" WidthRequest="50" />
             <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
@@ -67,18 +68,6 @@
                                 </Switch.Behaviors>
                             </Switch>
                         </Grid>
-
-                        <!--<StackLayout Padding="10,5" Orientation="Horizontal" VerticalOptions="Center">
-                            <Label Text="{Binding Description}" />
-                            <Switch IsToggled="{Binding IsDone, Mode=TwoWay}"                                     
-                                    HorizontalOptions="EndAndExpand">
-                                <Switch.Behaviors>
-                                    <behaviors:EventToCommandBehavior EventName="Toggled" 
-                                                                      Command="{Binding Path=BindingContext.UpdateItemCommand, Source={x:Reference Name=TodoListPage}}" 
-                                                                      CommandParameter="{Binding .}" />
-                                </Switch.Behaviors>    
-                            </Switch>
-                        </StackLayout>-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
