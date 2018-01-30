@@ -9,6 +9,7 @@ namespace XFPrismDemo.ViewModels
         private readonly INavigationService _navigationService;
         private string _username;
         private string _password;
+        private bool _canLogin;
         private bool _isPasswordValid;
 
         public LoginPageViewModel(INavigationService navigationService)
@@ -30,13 +31,18 @@ namespace XFPrismDemo.ViewModels
 
         public bool CanLogin
         {
-            get { return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password) && IsPasswordValid; }
+            get { return _canLogin; }
+            set { SetProperty(ref _canLogin, value); }
         }
 
         public bool IsPasswordValid
         {
             get {return _isPasswordValid; }
-            set { SetProperty(ref _isPasswordValid, value); }
+            set
+            {
+                SetProperty(ref _isPasswordValid, value);
+                CanLogin = !string.IsNullOrEmpty(Username) && IsPasswordValid;
+            }
         }
 
         public DelegateCommand LoginCommand => new DelegateCommand(Login).ObservesCanExecute(() => CanLogin);        

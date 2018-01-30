@@ -8,5 +8,5 @@ namespace XFPrismDemo.Views
 		{
 			InitializeComponent ();
 		}
-	}
+    }
 }

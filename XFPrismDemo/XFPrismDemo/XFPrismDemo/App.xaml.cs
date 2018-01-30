@@ -31,12 +31,13 @@ namespace XFPrismDemo
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<NavigationMenuPage>();
-            
-            containerRegistry.RegisterSingleton(typeof(IDatabaseService), typeof(DatabaseService));
+            containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<TodoListPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
+
+            containerRegistry.RegisterSingleton(typeof(IDatabaseService), typeof(DatabaseService));
+            
         }
     }
 }

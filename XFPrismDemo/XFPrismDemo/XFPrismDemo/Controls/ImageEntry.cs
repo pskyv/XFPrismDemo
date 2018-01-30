@@ -12,7 +12,7 @@ namespace XFPrismDemo.Controls
             BindableProperty.Create(nameof(Image), typeof(string), typeof(ImageEntry), string.Empty);
 
         public static readonly BindableProperty LineColorProperty =
-            BindableProperty.Create(nameof(LineColor), typeof(Xamarin.Forms.Color), typeof(ImageEntry), Color.White);
+            BindableProperty.Create(nameof(LineColor), typeof(Xamarin.Forms.Color), typeof(ImageEntry), Color.Black);
 
         public static readonly BindableProperty ImageHeightProperty =
             BindableProperty.Create(nameof(ImageHeight), typeof(int), typeof(ImageEntry), 40);

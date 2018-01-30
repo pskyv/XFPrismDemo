@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
+             xmlns:behaviors="clr-namespace:XFPrismDemo.Behavior"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="XFPrismDemo.Views.LoginPage">
+             x:Class="XFPrismDemo.Views.LoginPage"
+             x:Name="LoginPage">
 
     <StackLayout>
 
@@ -13,11 +16,27 @@
         </StackLayout>
 
         <StackLayout Padding="40,10">
-            <Entry Placeholder="Username..." />
-            <Entry Placeholder="Password..." IsPassword="True" />
+            <ctrls:ImageEntry Placeholder="Username..." Text="{Binding Username}">
+                <ctrls:ImageEntry.Behaviors>
+                    <behaviors:EmptyEntryValidationBehavior />
+                </ctrls:ImageEntry.Behaviors>
+            </ctrls:ImageEntry>
+            
+            <ctrls:ImageEntry Placeholder="Password..." Text="{Binding Password}" IsPassword="True">
+                <ctrls:ImageEntry.Behaviors>
+                    <behaviors:PasswordValidationBehavior IsValid="{Binding Source={x:Reference Name=LoginPage}, Path=Path=BindingContext.IsPasswordValid}" x:Name="passwordValidator" />
+                </ctrls:ImageEntry.Behaviors>    
+            </ctrls:ImageEntry>
+            
+            <Label Text="Password must have at least 6 characters length" 
+                   IsVisible="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource InverseVisibilityConverter}}"
+                   FontSize="Micro" 
+                   TextColor="Red" 
+                   Margin="0,1,0,30"/>
+            
             <Button Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
-        
+
     </StackLayout>
-  
+
 </ContentPage>
