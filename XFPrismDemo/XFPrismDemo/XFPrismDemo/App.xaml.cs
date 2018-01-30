@@ -24,7 +24,8 @@ namespace XFPrismDemo
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationMenuPage/NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("LoginPage");
+            //await NavigationService.NavigateAsync("NavigationMenuPage/NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -35,6 +36,7 @@ namespace XFPrismDemo
             
             containerRegistry.RegisterSingleton(typeof(IDatabaseService), typeof(DatabaseService));
             containerRegistry.RegisterForNavigation<TodoListPage>();
+            containerRegistry.RegisterForNavigation<LoginPage>();
         }
     }
 }
