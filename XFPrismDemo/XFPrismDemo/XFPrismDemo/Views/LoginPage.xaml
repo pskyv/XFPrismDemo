@@ -14,8 +14,8 @@
 
         <StackLayout Padding="40,10">
             <Entry Placeholder="Username..." />
-            <Entry Placeholder="Password..." />
-            <Button Text="Login" />
+            <Entry Placeholder="Password..." IsPassword="True" />
+            <Button Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
         
     </StackLayout>
