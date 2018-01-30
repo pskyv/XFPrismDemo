@@ -20,7 +20,11 @@ namespace XFPrismDemo.ViewModels
         public string Username
         {
             get { return _username; }
-            set { SetProperty(ref _username, value); }
+            set
+            {
+                SetProperty(ref _username, value);
+                CanLogin = !string.IsNullOrEmpty(Username) && IsPasswordValid;
+            }
         }
 
         public string Password

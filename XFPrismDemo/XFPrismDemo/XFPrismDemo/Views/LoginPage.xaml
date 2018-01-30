@@ -18,22 +18,31 @@
         <StackLayout Padding="40,10">
             <ctrls:ImageEntry Placeholder="Username..." Text="{Binding Username}">
                 <ctrls:ImageEntry.Behaviors>
-                    <behaviors:EmptyEntryValidationBehavior />
+                    <behaviors:EmptyEntryValidationBehavior x:Name="emptyEntryValidator" />
                 </ctrls:ImageEntry.Behaviors>
+                <!--<ctrls:ImageEntry.Triggers>
+                    <DataTrigger TargetType="ctrls:ImageEntry"
+                                 Binding="{Binding Source={x:Reference emptyEntryValidator},
+                                 Path=IsValid}"
+                                 Value="False">
+                        <Setter Property="LineColor" Value="Red" />
+                    </DataTrigger>
+                </ctrls:ImageEntry.Triggers>-->
+                
             </ctrls:ImageEntry>
-            
+
             <ctrls:ImageEntry Placeholder="Password..." Text="{Binding Password}" IsPassword="True">
                 <ctrls:ImageEntry.Behaviors>
                     <behaviors:PasswordValidationBehavior IsValid="{Binding Source={x:Reference Name=LoginPage}, Path=Path=BindingContext.IsPasswordValid}" x:Name="passwordValidator" />
-                </ctrls:ImageEntry.Behaviors>    
+                </ctrls:ImageEntry.Behaviors>
             </ctrls:ImageEntry>
-            
+
             <Label Text="Password must have at least 6 characters length" 
                    IsVisible="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource InverseVisibilityConverter}}"
                    FontSize="Micro" 
                    TextColor="Red" 
                    Margin="0,1,0,30"/>
-            
+
             <Button Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
 
