@@ -9,7 +9,7 @@
              x:Name="LoginPage">
 
     <StackLayout>
-
+        
         <StackLayout BackgroundColor="#CFD8DC" Padding="20" Orientation="Horizontal">
             <Image Source="ic_launcher.png" />
             <Label Text="My Demo" FontSize="Large" VerticalOptions="Center" Margin="5,0,0,0" />
@@ -38,7 +38,7 @@
             </ctrls:ImageEntry>
 
             <Label Text="Password must have at least 6 characters length" 
-                   IsVisible="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource InverseVisibilityConverter}}"
+                   Opacity="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource BoolToOpacityConverter}}"
                    FontSize="Micro" 
                    TextColor="Red" 
                    Margin="0,1,0,30"/>

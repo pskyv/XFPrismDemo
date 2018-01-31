@@ -8,6 +8,7 @@
     <Application.Resources>
         <ResourceDictionary >
             <cv:InverseVisibilityConverter x:Key="InverseVisibilityConverter" />
+            <cv:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
             <Style TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="#CFD8DC" />
             </Style> 

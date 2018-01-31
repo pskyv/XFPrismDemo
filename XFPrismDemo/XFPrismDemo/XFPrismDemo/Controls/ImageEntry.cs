@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace XFPrismDemo.Controls
 {
@@ -12,7 +13,7 @@ namespace XFPrismDemo.Controls
             BindableProperty.Create(nameof(Image), typeof(string), typeof(ImageEntry), string.Empty);
 
         public static readonly BindableProperty LineColorProperty =
-            BindableProperty.Create(nameof(LineColor), typeof(Xamarin.Forms.Color), typeof(ImageEntry), Color.Black);
+            BindableProperty.Create(nameof(LineColor), typeof(Xamarin.Forms.Color), typeof(ImageEntry), Color.Black, BindingMode.TwoWay, null, propertyChanged: OnLineColorPropertyChanged);        
 
         public static readonly BindableProperty ImageHeightProperty =
             BindableProperty.Create(nameof(ImageHeight), typeof(int), typeof(ImageEntry), 40);
@@ -22,6 +23,11 @@ namespace XFPrismDemo.Controls
 
         public static readonly BindableProperty ImageAlignmentProperty =
             BindableProperty.Create(nameof(ImageAlignment), typeof(ImageAlignment), typeof(ImageEntry), ImageAlignment.Left);
+
+        private static void OnLineColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ImageEntry)bindable).LineColor = (Color)newValue;
+        }
 
         public Color LineColor
         {
