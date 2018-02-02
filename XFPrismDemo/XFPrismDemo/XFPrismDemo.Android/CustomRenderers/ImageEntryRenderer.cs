@@ -32,10 +32,10 @@ namespace XFPrismDemo.Droid.CustomRenderers
             if (e.OldElement != null || e.NewElement == null)
                 return;
 
-            element = (ImageEntry)this.Element;
-
+            element = (ImageEntry)this.Element;                           
 
             var editText = this.Control;
+
             if (!string.IsNullOrEmpty(element.Image))
             {
                 switch (element.ImageAlignment)

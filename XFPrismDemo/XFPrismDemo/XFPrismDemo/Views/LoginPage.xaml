@@ -16,26 +16,13 @@
         </StackLayout>
 
         <StackLayout Padding="40,10">
-            <ctrls:ImageEntry Placeholder="Username..." Text="{Binding Username}">
-                <ctrls:ImageEntry.Behaviors>
-                    <behaviors:EmptyEntryValidationBehavior x:Name="emptyEntryValidator" />
-                </ctrls:ImageEntry.Behaviors>
-                <!--<ctrls:ImageEntry.Triggers>
-                    <DataTrigger TargetType="ctrls:ImageEntry"
-                                 Binding="{Binding Source={x:Reference emptyEntryValidator},
-                                 Path=IsValid}"
-                                 Value="False">
-                        <Setter Property="LineColor" Value="Red" />
-                    </DataTrigger>
-                </ctrls:ImageEntry.Triggers>-->
-                
-            </ctrls:ImageEntry>
+            <ctrls:EmptyValidationEntry Placeholder="Username..." Text="{Binding Username}" />
 
-            <ctrls:ImageEntry Placeholder="Password..." Text="{Binding Password}" IsPassword="True">
-                <ctrls:ImageEntry.Behaviors>
+            <ctrls:EmptyValidationEntry Placeholder="Password..." Text="{Binding Password}" IsPassword="True">
+                <ctrls:EmptyValidationEntry.Behaviors>
                     <behaviors:PasswordValidationBehavior IsValid="{Binding Source={x:Reference Name=LoginPage}, Path=Path=BindingContext.IsPasswordValid}" x:Name="passwordValidator" />
-                </ctrls:ImageEntry.Behaviors>
-            </ctrls:ImageEntry>
+                </ctrls:EmptyValidationEntry.Behaviors>
+            </ctrls:EmptyValidationEntry>
 
             <Label Text="Password must have at least 6 characters length" 
                    Opacity="{Binding Source={x:Reference passwordValidator}, Path=IsValid, Converter={StaticResource BoolToOpacityConverter}}"
