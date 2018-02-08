@@ -8,7 +8,7 @@
                   BarTextColor="Black">
 
     <views:TodoListPage />
-    <ContentPage Title="Contacts" Icon="ic_contacts.png"/>
+    <views:NoteListPage />
     <ContentPage Title="Search" Icon="ic_search.png"/>
 
 </bb:BottomBarPage>

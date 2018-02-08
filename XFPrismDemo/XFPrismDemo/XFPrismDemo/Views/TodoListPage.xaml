@@ -19,8 +19,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ctrls:ImageEntry Image="ic_lightbulb" Placeholder="Add new item..." Text="{Binding NewItemDescription}" />
-            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" WidthRequest="50" />
+            <ctrls:ImageEntry Image="ic_lightbulb" Placeholder="Add new item..." Text="{Binding NewItemDescription}" ImageAlignment="Right" />
+            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" WidthRequest="50" BackgroundColor="{StaticResource primary}" />
             <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateItemCommand}" />

@@ -13,7 +13,7 @@ namespace XFPrismDemo.Android.DataPersistence
         public SQLiteAsyncConnection GetConnection()
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var path = Path.Combine(documentsPath, "MyTodoList.db3");
+            var path = Path.Combine(documentsPath, "MyDemo.db3");
 
             return new SQLiteAsyncConnection(path);
         }

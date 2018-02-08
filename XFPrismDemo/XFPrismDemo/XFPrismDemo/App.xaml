@@ -7,6 +7,9 @@
 
     <Application.Resources>
         <ResourceDictionary >
+            <Color x:Key="primary">#607D8B</Color>
+            <Color x:Key="primaryDark">#455A64</Color>
+            <Color x:Key="primaryLight">#BDBDBD</Color>
             <cv:InverseVisibilityConverter x:Key="InverseVisibilityConverter" />
             <cv:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
             <Style TargetType="ContentPage">

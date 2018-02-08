@@ -30,7 +30,7 @@
                    TextColor="Red" 
                    Margin="0,1,0,30"/>
 
-            <Button Text="Login" Command="{Binding LoginCommand}" />
+            <Button Text="Login" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource primary}" />
         </StackLayout>
 
     </StackLayout>

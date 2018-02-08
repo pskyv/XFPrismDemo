@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="XFPrismDemo.Views.NoteListPage"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             Title="Notes"
+             Icon="ic_notebook"
+             BackgroundColor="#CFD8DC">
+
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <ListView ItemsSource="{Binding Notes}" 
+					  AbsoluteLayout.LayoutFlags="All"
+					  AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Detail="{Binding SubText}" TextColor="Black" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <fab:FloatingActionButtonView
+				ImageName="ic_add_white.png"
+				ColorNormal="#607D8B"
+				ColorPressed="#455A64"
+				ColorRipple="#455A64"
+				x:Name="FloatingActionButtonAdd"
+				IsVisible="True"
+				AbsoluteLayout.LayoutFlags="PositionProportional"
+				AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>
+
+
+<!--<TextCell Text="{Binding Title}" Detail="{Binding CreatedAt, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Black" />-->
