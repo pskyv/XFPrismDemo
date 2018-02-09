@@ -13,5 +13,7 @@ namespace XFPrismDemo.Models
         public DateTime CreatedAt { get; set; }
 
         public bool IsDone { get; set; }
+
+        public bool IsUrgent { get; set; }
     }
 }

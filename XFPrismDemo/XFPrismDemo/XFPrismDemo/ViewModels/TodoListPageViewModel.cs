@@ -14,6 +14,7 @@ namespace XFPrismDemo.ViewModels
 	{
         private readonly IDatabaseService _databaseService;
         private string _newItemDescription;
+        private bool _isUrgent;
         private bool _isRefreshing;
 
         public TodoListPageViewModel(IDatabaseService databaseService)
@@ -27,6 +28,12 @@ namespace XFPrismDemo.ViewModels
         {
             get { return _newItemDescription; }
             set { SetProperty(ref _newItemDescription, value); }
+        }
+
+        public bool IsUrgent
+        {
+            get { return _isUrgent; }
+            set { SetProperty(ref _isUrgent, value); }
         }
 
         public bool IsRefreshing
@@ -92,13 +99,14 @@ namespace XFPrismDemo.ViewModels
                 return;
             }
 
-            var item = new TodoItem { Description = NewItemDescription, IsDone = false, CreatedAt = DateTime.Now };
+            var item = new TodoItem { Description = NewItemDescription, IsDone = false, CreatedAt = DateTime.Now, IsUrgent = IsUrgent };
             try
             {
                 if (await _databaseService.TodoItemDatabase.SaveItemAsync(item) > 0)
                 {
                     TodoItems.Add(item);
                     NewItemDescription = string.Empty;
+                    IsUrgent = false;
                     HelperFunctions.ShowToastMessage(ToastMessageType.Success, "Item saved successfully");
                 }
             }

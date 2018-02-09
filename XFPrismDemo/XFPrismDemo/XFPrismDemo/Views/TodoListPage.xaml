@@ -4,6 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
+             xmlns:cv="clr-namespace:XFPrismDemo.Converters"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XFPrismDemo.Views.TodoListPage"
              x:Name="TodoListPage"
@@ -11,16 +12,30 @@
              Icon="ic_todoList"
              BackgroundColor="#CFD8DC">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cv:IsUrgentToImageConverter x:Key="IsUrgentToImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout Padding="20">
 
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <ctrls:ImageEntry Image="ic_lightbulb" Placeholder="Add new item..." Text="{Binding NewItemDescription}" ImageAlignment="Right" />
-            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" WidthRequest="50" BackgroundColor="{StaticResource primary}" />
+            <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                <Label Text="Urgent" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding IsUrgent}" VerticalOptions="Center" />
+            </StackLayout>
+            <Button Grid.RowSpan="2" Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" BackgroundColor="{StaticResource primary}" VerticalOptions="Fill" />
             <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateItemCommand}" />
@@ -28,6 +43,8 @@
             </Image>-->
         </Grid>
 
+        <BoxView Margin="0,1,0,5" />
+        
         <ListView ItemsSource="{Binding TodoItems}" 
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
@@ -45,19 +62,21 @@
                         <Grid Padding="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Description}" VerticalOptions="Center" />
-                            <BoxView VerticalOptions="Center" IsVisible="False" Color="Black" HeightRequest="0.5">
+                            <Image Source="{Binding IsUrgent, Converter={StaticResource IsUrgentToImageConverter}}" />
+                            <Label Grid.Column="1" Text="{Binding Description}" VerticalOptions="Center" />
+                            <BoxView Grid.Column="1" VerticalOptions="Center" IsVisible="False" Color="Black" HeightRequest="0.5">
                                 <BoxView.Triggers>
                                     <DataTrigger TargetType="BoxView" Binding="{Binding Source={x:Reference switch}, Path=IsToggled}" Value="True">
                                         <Setter Property="IsVisible" Value="True" />
                                     </DataTrigger>
-                                </BoxView.Triggers>    
+                                </BoxView.Triggers>
                             </BoxView>
                             <Switch x:Name="switch" 
-                                    Grid.Column="1" 
+                                    Grid.Column="2" 
                                     IsToggled="{Binding IsDone, Mode=TwoWay}"                                     
                                     HorizontalOptions="EndAndExpand"
                                     VerticalOptions="Center">
