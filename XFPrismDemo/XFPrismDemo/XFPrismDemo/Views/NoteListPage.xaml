@@ -11,7 +11,9 @@
 
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ListView ItemsSource="{Binding Notes}" 
+            <ListView ItemsSource="{Binding NotesGrouped}" 
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding Key}"
 					  AbsoluteLayout.LayoutFlags="All"
 					  AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <ListView.ItemTemplate>
@@ -19,12 +21,23 @@
                         <TextCell Text="{Binding Title}" Detail="{Binding SubText}" TextColor="Black" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="25">
+                            <StackLayout VerticalOptions="FillAndExpand" 
+                                         Padding="5" 
+                                         BackgroundColor="White">
+                                <Label Text="{Binding Key}" TextColor="#212121" VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
             </ListView>
             <fab:FloatingActionButtonView
 				ImageName="ic_add_white.png"
-				ColorNormal="#607D8B"
-				ColorPressed="#455A64"
-				ColorRipple="#455A64"
+				ColorNormal="{StaticResource primary}"
+				ColorPressed="{StaticResource primaryDark}"
+				ColorRipple="{StaticResource primaryDark}"
 				x:Name="FloatingActionButtonAdd"
 				IsVisible="True"
 				AbsoluteLayout.LayoutFlags="PositionProportional"
