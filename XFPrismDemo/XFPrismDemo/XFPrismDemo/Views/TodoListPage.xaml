@@ -35,7 +35,7 @@
                 <Label Text="Urgent" VerticalOptions="Center" />
                 <Switch IsToggled="{Binding IsUrgent}" VerticalOptions="Center" />
             </StackLayout>
-            <Button Grid.RowSpan="2" Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" BackgroundColor="{StaticResource primary}" VerticalOptions="Fill" />
+            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" BackgroundColor="{StaticResource primary}" WidthRequest="50" VerticalOptions="Fill" />
             <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateItemCommand}" />
@@ -45,7 +45,8 @@
 
         <BoxView Margin="0,1,0,5" />
         
-        <ListView ItemsSource="{Binding TodoItems}" 
+        <ListView x:Name="lvItems" 
+                  ItemsSource="{Binding TodoItems}" 
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">

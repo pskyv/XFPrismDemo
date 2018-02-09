@@ -23,9 +23,8 @@
                 </ListView.ItemTemplate>
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <ViewCell Height="25">
-                            <StackLayout VerticalOptions="FillAndExpand" 
-                                         Padding="5" 
+                        <ViewCell>
+                            <StackLayout Padding="5,12,0,0" 
                                          BackgroundColor="White">
                                 <Label Text="{Binding Key}" TextColor="#212121" VerticalOptions="Center" />
                             </StackLayout>
