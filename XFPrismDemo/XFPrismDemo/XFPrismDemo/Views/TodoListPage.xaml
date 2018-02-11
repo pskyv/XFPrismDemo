@@ -35,7 +35,7 @@
                 <Label Text="Urgent" VerticalOptions="Center" />
                 <Switch IsToggled="{Binding IsUrgent}" VerticalOptions="Center" />
             </StackLayout>
-            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" BackgroundColor="{StaticResource primary}" WidthRequest="50" VerticalOptions="Fill" />
+            <Button Grid.Column="1" Image="ic_done.png" Command="{Binding CreateItemCommand}" BackgroundColor="{StaticResource primary}" WidthRequest="80" VerticalOptions="Fill" />
             <!--<Image Grid.Column="1" Source="ic_done.png">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateItemCommand}" />

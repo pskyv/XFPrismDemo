@@ -1,11 +1,13 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 using XFPrismDemo.Models;
+using XFPrismDemo.Services;
 using XFPrismDemo.Utils;
 using XFPrismDemo.Views;
 
@@ -13,40 +15,48 @@ namespace XFPrismDemo.ViewModels
 {
 	public class NoteListPageViewModel : BindableBase
 	{
-        private List<Note> _notes;
-        public NoteListPageViewModel()
+        private readonly IDatabaseService _databaseService;
+        private readonly INavigationService _navigationService;
+        private IEnumerable<Note> _notes;
+        private Note _selectedNote;
+
+        public NoteListPageViewModel(INavigationService navigationService, IDatabaseService databaseService)
         {
-            _notes = new List<Note>();
+            _navigationService = navigationService;
+            _databaseService = databaseService;
+
             NotesGrouped = new ObservableCollection<Grouping<string, Note>>();
             MessagingCenter.Subscribe<NoteListPage>(this, Constants.OnNotesAppearingMsg, (sender) => { GetNotes(); });            
         }
 
+        public Note SelectedNote
+        {
+            get { return _selectedNote; }
+            set { SetProperty(ref _selectedNote, value); }
+        }
+
         public ObservableCollection<Grouping<string, Note>> NotesGrouped { get; set; }
 
-        private void GetNotes()
+        public DelegateCommand<string> NavigateToNoteDetailCommand => new DelegateCommand<string>(NavigateToNoteDetail);
+
+        public DelegateCommand<Note> RemoveFromListCommand => new DelegateCommand<Note>(RemoveFromList);
+
+        private async void NavigateToNoteDetail(string mode)
         {
-            _notes.Add(new Note { Title = "Note 1", CreatedAt = DateTime.Now, Text = "First payment was made when I was in Athens" });
-            _notes.Add(new Note { Title = "Note 2", CreatedAt = DateTime.Now });
-            _notes.Add(new Note { Title = "Note 3", CreatedAt = DateTime.Now.AddMonths(-1) });
-            _notes.Add(new Note { Title = "Note 4", CreatedAt = DateTime.Now.AddMonths(-1) });
-            _notes.Add(new Note { Title = "Note 5", CreatedAt = DateTime.Now.AddMonths(-1) });
-            _notes.Add(new Note { Title = "Note 6", CreatedAt = DateTime.Now.AddMonths(-2) });
-            _notes.Add(new Note { Title = "Note 7", CreatedAt = DateTime.Now.AddMonths(-2) });
-            _notes.Add(new Note { Title = "Note 8", CreatedAt = DateTime.Now.AddMonths(-2) });
-            _notes.Add(new Note { Title = "Note 9", CreatedAt = DateTime.Now.AddMonths(-4) });
-            _notes.Add(new Note { Title = "Note 10", CreatedAt = DateTime.Now.AddMonths(-4) });
-            _notes.Add(new Note { Title = "Note 11", CreatedAt = DateTime.Now.AddMonths(-5) });
-            _notes.Add(new Note { Title = "Note 12", CreatedAt = DateTime.Now.AddMonths(-5) });
-            _notes.Add(new Note { Title = "Note 13", CreatedAt = DateTime.Now.AddMonths(-5) });
-            _notes.Add(new Note { Title = "Note 14", CreatedAt = DateTime.Now.AddMonths(-7) });
-            _notes.Add(new Note { Title = "Note 15", CreatedAt = DateTime.Now.AddMonths(-7) });
-            _notes.Add(new Note { Title = "Note 16", CreatedAt = DateTime.Now.AddMonths(-7) });
-            _notes.Add(new Note { Title = "Note 17", CreatedAt = DateTime.Now.AddMonths(-10) });
-            _notes.Add(new Note { Title = "Note 18", CreatedAt = DateTime.Now.AddMonths(-10) });
-            _notes.Add(new Note { Title = "Note 19", CreatedAt = DateTime.Now });
-            _notes.Add(new Note { Title = "Note 20", CreatedAt = DateTime.Now });
-            _notes.Add(new Note { Title = "Note 21", CreatedAt = DateTime.Now });
-            _notes.Add(new Note { Title = "Note 22", CreatedAt = DateTime.Now, Text = "Last car service 6 months ago. 75000Km" });
+            if(mode.Equals("Add"))
+            {
+                var note = new Note { CreatedAt = DateTime.Now };
+                SelectedNote = note;
+            }
+
+            var navParams = new NavigationParameters();
+            navParams.Add("currentNote", SelectedNote);
+            await _navigationService.NavigateAsync("NoteDetailsPage", navParams);
+        }
+
+        private async void GetNotes()
+        {
+            _notes = await _databaseService.NoteDatabase.GetNotesAsync();
 
             var group = from note in _notes
                         orderby note.CreatedAt descending
@@ -59,7 +69,23 @@ namespace XFPrismDemo.ViewModels
                 NotesGrouped.Add(item);
             }
 
-            MessagingCenter.Unsubscribe<NoteListPage>(this, Constants.OnNotesAppearingMsg);
-        }        
-	}
+            //MessagingCenter.Unsubscribe<NoteListPage>(this, Constants.OnNotesAppearingMsg);
+        }
+
+        private async void RemoveFromList(Note note)
+        {
+            try
+            {
+                if (await _databaseService.NoteDatabase.DeleteNoteAsync(note) > 0)
+                {
+                    //NotesGrouped.Remove(note);
+                    GetNotes();
+                }
+            }
+            catch (Exception e)
+            {
+                var error = e.Message;
+            }
+        }
+    }
 }

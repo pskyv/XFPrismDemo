@@ -36,6 +36,7 @@ namespace XFPrismDemo
             containerRegistry.RegisterForNavigation<TodoListPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<NoteListPage>();
+            containerRegistry.RegisterForNavigation<NoteDetailsPage>();
 
             containerRegistry.RegisterSingleton(typeof(IDatabaseService), typeof(DatabaseService));            
         }

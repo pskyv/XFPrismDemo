@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="XFPrismDemo.Views.NoteDetailsPage"
+             BackgroundColor="#CFD8DC">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_done.png" Order="Primary" Command="{Binding SaveNoteCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <StackLayout Padding="10" BackgroundColor="White">
+            <Label Text="Title" />
+        </StackLayout>
+        <Entry Placeholder="Title..." Text="{Binding CurrentNote.Title}" FontSize="Small" Margin="10,0,10,0" />
+        <StackLayout Padding="10" BackgroundColor="White" Margin="0,20,0,0">
+            <Label Text="Note body" />
+        </StackLayout>
+        <Editor Text="{Binding CurrentNote.Text}" FontSize="Small" Margin="10,0,10,0" />
+    </StackLayout>
+  
+</ContentPage>
