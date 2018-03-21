@@ -3,10 +3,10 @@ namespace XFPrismDemo.Utils
 {
     public static class Constants
     {
-        public static string MainPageCaption = "Main page";
+        public const string MainPageCaption = "Main page";
 
-        public static string SettingsPageCaption = "Settings";
+        public const string SettingsPageCaption = "Settings";
 
-        public static string OnNotesAppearingMsg = "OnNotesAppearingMsg";
+        public const string OnNotesAppearingMsg = "OnNotesAppearingMsg";
     }
 }
