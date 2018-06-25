@@ -5,11 +5,11 @@
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XFPrismDemo.Views.NoteListPage"
-             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
-             x:Name="NoteListPage"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"             
              Title="Notes"
              Icon="ic_notebook"
-             BackgroundColor="#CFD8DC">
+             BackgroundColor="#CFD8DC"
+             x:Name="MyNoteListPage">
 
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -30,7 +30,7 @@
                                 <MenuItem Text="Remove" 
                                       Icon="ic_delete.png" 
                                       IsDestructive="True"
-                                      Command="{Binding Path=BindingContext.RemoveFromListCommand, Source={x:Reference Name=NoteListPage}}" 
+                                      Command="{Binding Path=BindingContext.RemoveFromListCommand, Source={x:Reference MyNoteListPage}}" 
                                       CommandParameter="{Binding .}" />
                             </ViewCell.ContextActions>
                             <StackLayout Padding="10" Spacing="1">

@@ -6,10 +6,10 @@
              xmlns:behaviors="clr-namespace:XFPrismDemo.Behavior"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XFPrismDemo.Views.LoginPage"
-             x:Name="LoginPage">
+             x:Name="MyLoginPage">
 
     <StackLayout>
-        
+
         <StackLayout BackgroundColor="#CFD8DC" Padding="20" Orientation="Horizontal">
             <Image Source="ic_launcher.png" />
             <Label Text="My Demo" FontSize="Large" VerticalOptions="Center" Margin="5,0,0,0" />
@@ -20,7 +20,7 @@
 
             <ctrls:EmptyValidationEntry Placeholder="Password..." Text="{Binding Password}" IsPassword="True">
                 <ctrls:EmptyValidationEntry.Behaviors>
-                    <behaviors:PasswordValidationBehavior IsValid="{Binding Source={x:Reference Name=LoginPage}, Path=Path=BindingContext.IsPasswordValid}" x:Name="passwordValidator" />
+                    <behaviors:PasswordValidationBehavior IsValid="{Binding Source={x:Reference MyLoginPage}, Path=BindingContext.IsPasswordValid}" x:Name="passwordValidator" />
                 </ctrls:EmptyValidationEntry.Behaviors>
             </ctrls:EmptyValidationEntry>
 

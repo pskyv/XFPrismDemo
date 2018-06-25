@@ -6,11 +6,11 @@
              xmlns:ctrls="clr-namespace:XFPrismDemo.Controls"
              xmlns:cv="clr-namespace:XFPrismDemo.Converters"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="XFPrismDemo.Views.TodoListPage"
-             x:Name="TodoListPage"
+             x:Class="XFPrismDemo.Views.TodoListPage"             
              Title="Todo List"
              Icon="ic_todoList"
-             BackgroundColor="#CFD8DC">
+             BackgroundColor="#CFD8DC"
+             x:Name="MyTodoListPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -57,7 +57,7 @@
                         <ViewCell.ContextActions>
                             <MenuItem Text="Remove" 
                                       Icon="ic_delete.png" 
-                                      Command="{Binding Path=BindingContext.RemoveFromListCommand, Source={x:Reference Name=TodoListPage}}" 
+                                      Command="{Binding Path=BindingContext.RemoveFromListCommand, Source={x:Reference MyTodoListPage}}" 
                                       CommandParameter="{Binding .}" />
                         </ViewCell.ContextActions>
 
@@ -84,7 +84,7 @@
                                     VerticalOptions="Center">
                                 <Switch.Behaviors>
                                     <behaviors:EventToCommandBehavior EventName="Toggled" 
-                                                                      Command="{Binding Path=BindingContext.UpdateItemCommand, Source={x:Reference Name=TodoListPage}}" 
+                                                                      Command="{Binding Path=BindingContext.UpdateItemCommand, Source={x:Reference MyTodoListPage}}" 
                                                                       CommandParameter="{Binding .}" />
                                 </Switch.Behaviors>
                             </Switch>
